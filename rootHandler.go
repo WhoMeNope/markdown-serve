@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/valyala/fasthttp"
 )
@@ -23,11 +24,31 @@ func rootHandler(ctx *fasthttp.RequestCtx) {
 	fmt.Fprintln(ctx, "<body><ul>")
 
 	for _, f := range files {
-		fmt.Fprintln(ctx, "<li><a href='/story?name="+f.Name()+"'>"+f.Name()+"</a></li>")
+		name := stripExtension(f.Name())
+		fmt.Fprintln(ctx, "<li><a href='/story?name="+f.Name()+"'>"+name+"</a></li>")
 	}
 
 	fmt.Fprintln(ctx, "</ul></body>")
 
 	ctx.SetContentType("text/html")
 	ctx.SetStatusCode(fasthttp.StatusOK)
+}
+
+func stripExtension(s string) string {
+	parts := strings.Split(s, ".")
+
+	// no extension
+	if len(parts) <= 1 {
+		return s
+	}
+
+	// concat without extension
+	name := ""
+	for i := 0; i < len(parts)-1; i++ {
+		if name != "" {
+			name += "."
+		}
+		name += parts[i]
+	}
+	return name
 }
