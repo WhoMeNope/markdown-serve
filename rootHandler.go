@@ -21,14 +21,14 @@ func rootHandler(ctx *fasthttp.RequestCtx) {
 			<title>tales</title>
 			<link rel="stylesheet" type="text/css" href="/core.css">
 		</head>`)
-	fmt.Fprintln(ctx, "<body><ul>")
+	fmt.Fprintln(ctx, "<body><div class='list'><ul>")
 
 	for _, f := range files {
 		name := stripExtension(f.Name())
 		fmt.Fprintln(ctx, "<li><a href='/story?name="+f.Name()+"'>"+name+"</a></li>")
 	}
 
-	fmt.Fprintln(ctx, "</ul></body>")
+	fmt.Fprintln(ctx, "</ul></div></body>")
 
 	ctx.SetContentType("text/html")
 	ctx.SetStatusCode(fasthttp.StatusOK)

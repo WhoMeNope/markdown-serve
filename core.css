@@ -4,11 +4,11 @@ body {
   margin: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: #efe;
+  background-color: #FCFFB8;
 }
 
 h1 {
-  background-color: #57c;
+  background-color: #D1BFFF;
   padding: 0 0.5rem;
 }
 
@@ -18,6 +18,11 @@ p {
   margin: 1.5rem 0.5rem;
 }
 
+div.list {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+}
 ul {
   display: flex;
   flex-direction: column;
@@ -25,6 +30,7 @@ ul {
 
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 li {
   font-size: calc(22px + 4 * ((100vw - 320px) / 1024));
@@ -34,8 +40,8 @@ li {
   padding: 1rem 1rem;
 }
 li:nth-child(2n-1) {
-  background-color: #cbc;
+  background-color: #D1BFFF;
 }
 li:nth-child(2n) {
-  background-color: #bdd;
+  background-color: #FF88DC;
 }
